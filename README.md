@@ -1,5 +1,9 @@
 # Demo Devops NodeJs
 
+[![CI/CD Pipeline](https://github.com/elvyscruz/devops-nodejs/actions/workflows/ci.yml/badge.svg)](https://github.com/elvyscruz/devops-nodejs/actions/workflows/ci.yml)
+
+---
+
 This is a simple application to be used in the technical test of DevOps.
 
 ## Getting Started
@@ -44,6 +48,22 @@ npm run start
 
 Open http://localhost:8000/api/users with your browser to see the result.
 
+### Running with Docker
+
+You can also build and run this application using Docker.
+
+First, build the Docker image:
+
+```bash
+docker build -t devops-nodejs-app .
+```
+
+Then, run the container:
+
+```bash
+docker run -p 8000:8000 -d --name my-app --env-file .env my-app
+```
+
 ### Features
 
 These services can perform,
@@ -58,8 +78,8 @@ To create a user, the endpoint **/api/users** must be consumed with the followin
 
 ```json
 {
-    "dni": "dni",
-    "name": "name"
+  "dni": "dni",
+  "name": "name"
 }
 ```
 
@@ -67,9 +87,9 @@ If the response is successful, the service will return an HTTP Status 200 and a 
 
 ```json
 {
-    "id": 1,
-    "dni": "dni",
-    "name": "name"
+  "id": 1,
+  "dni": "dni",
+  "name": "name"
 }
 ```
 
@@ -77,7 +97,7 @@ If the response is unsuccessful, we will receive status 400 and the following me
 
 ```json
 {
-    "error": "error"
+  "error": "error"
 }
 ```
 
@@ -93,11 +113,11 @@ If the response is successful, the service will return an HTTP Status 200 and a 
 
 ```json
 [
-    {
-        "id": 1,
-        "dni": "dni",
-        "name": "name"
-    }
+  {
+    "id": 1,
+    "dni": "dni",
+    "name": "name"
+  }
 ]
 ```
 
@@ -113,9 +133,9 @@ If the response is successful, the service will return an HTTP Status 200 and a 
 
 ```json
 {
-    "id": 1,
-    "dni": "dni",
-    "name": "name"
+  "id": 1,
+  "dni": "dni",
+  "name": "name"
 }
 ```
 
@@ -123,7 +143,7 @@ If the user id does not exist, we will receive status 404 and the following mess
 
 ```json
 {
-    "error": "User not found: <id>"
+  "error": "User not found: <id>"
 }
 ```
 
@@ -131,9 +151,7 @@ If the response is unsuccessful, we will receive status 400 and the following me
 
 ```json
 {
-    "errors": [
-        "error"
-    ]
+  "errors": ["error"]
 }
 ```
 
