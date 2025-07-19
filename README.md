@@ -148,6 +148,21 @@ kubectl --context=local get pods
 
 i) Create secret KUBE_CONFIG in github actions with ~/.kube/config file content and run github actions pipeline
 
+### Terraform AWS Deployment
+
+Preqrequisites:
+
+- Terraform installed
+- AWS CLI installed
+
+```bash
+    cd terraform
+    aws configure
+    terraform init
+    terraform plan
+    terraform apply
+```
+
 ### Features
 
 These services can perform the following features:
