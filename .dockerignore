@@ -1,0 +1,22 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Dependencies
+node_modules
+
+# Logs
+npm-debug.log
+
+# Local database file
+dev.sqlite
+
+# Documentation
+README.md
+
+# Tests
+*.test.js
