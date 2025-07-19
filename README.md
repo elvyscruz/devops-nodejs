@@ -1,7 +1,8 @@
 # Demo Devops NodeJs
 
-[![CI/CD Pipeline](https://github.com/elvyscruz/devops-nodejs/actions/workflows/ci.yml/badge.svg)](https://github.com/elvyscruz/devops-nodejs/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/elvyscruz/devops-nodejs/branch/master/graph/badge.svg?token=YOUR_CODECOV_TOKEN)](https://codecov.io/gh/elvyscruz/devops-nodejs)
+[!CI/CD Pipeline](https://github.com/elvyscruz/devops-nodejs/actions/workflows/ci.yml)
+[!codecov](https://codecov.io/gh/elvyscruz/devops-nodejs)
+[!SonarCloud](https://sonarcloud.io/summary/new_code?id=elvyscruz_devops-nodejs)
 
 ---
 
