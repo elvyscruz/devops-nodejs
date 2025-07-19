@@ -66,9 +66,98 @@ Then, run the container:
 docker run -p 8000:8000 -d --name my-app --env-file .env my-app
 ```
 
+### Local Kubernetes Deployment
+
+Preqrequisites:
+
+- Docker Desktop with Kubernetes installed
+- Kubectl
+- Ngrok installed and configured
+
+Follow these steps:
+
+a) Create a namespace
+
+```bash
+kubectl create namespace github-actions
+```
+
+b) Create a service account:
+
+```bash
+kubectl create sa github-actions-sa -n github-actions
+
+```
+
+c) Asign permissions to the service account:
+
+```bash
+kubectl create role deploy-role \
+  --namespace=github-actions \
+  --verb=create,get,list,update,delete \
+  --resource=deployments,services,pods,configmaps,secrets
+
+kubectl create rolebinding github-actions-binding \
+  --namespace=github-actions \
+  --role=deploy-role \
+  --serviceaccount=github-actions:github-actions-sa
+```
+
+d) Create a Secret Token
+
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-actions-token
+  namespace: github-actions
+  annotations:
+    kubernetes.io/service-account.name: github-actions-sa
+type: kubernetes.io/service-account-token
+EOF
+
+```
+
+e) Extract token
+
+```bash
+kubectl get secret github-actions-token -n github-actions -o jsonpath='{.data.token}' | base64 --decode
+```
+
+f) Expose local kubernetes api using Ngrok
+
+```bash
+ngrok tcp 6443
+```
+
+g) Setup kubeconfig for remote access
+
+```bash
+kubectl config set-cluster local --server=<ngrok-url> --insecure-skip-tls-verify
+kubectl config set-credentials github-actions --token=<SERVICE_ACCOUNT-TOKEN>
+kubectl config set-context local --cluster=local --user=github-actions-user
+kubectl config use-context local
+```
+
+h) Verifiy context:
+
+```bash
+kubectl --context=local get pods
+```
+
+i) Create secret KUBE_CONFIG in github actions with ~/.kube/config file content and run github actions pipeline
+
 ### Features
 
-These services can perform,
+These services can perform the following features:
+
+- User listing – Get a list of all users.
+- User details – View specific user information by ID.
+- User creation – Add new users to the system.
+- User update – Modify existing user data.
+- User deletion – Remove users from the system.
+- JSON format – Input and output data is in JSON.
 
 #### Create User
 
