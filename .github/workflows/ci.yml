@@ -80,5 +80,5 @@ jobs:
         run: |
           mkdir -p ~/.kube
           echo "$KUBE_CONFIG" > ~/.kube/config
-          kubectl config use-context local
+          kubectl config use-context docker-desktop
           kubectl apply -f k8s/  # Aplica tus manifiestos YAML
